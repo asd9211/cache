@@ -8,9 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.example.cache.vo.UserVO;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Repository
 public class UserRepository {
 
@@ -19,14 +16,14 @@ public class UserRepository {
 
     public UserVO findByNameNoCache(String name) {
         slowQuery(2000);
-        return new UserVO(0, name+"@gmail.com", name);
+        return new UserVO(name+"@naver.com", name);
     }
 
 
     @Cacheable(value="findUserInfoCache", key="#name")
     public UserVO findByNameCache(String name) {
         slowQuery(2000);
-        return new UserVO(0, name+ "@gmail.com", name);
+        return new UserVO(name+ "@naver.com", name);
     }
 
 
@@ -35,7 +32,6 @@ public class UserRepository {
         logger.info(name + "의 Cache Clear!");
     }
 
-    // 빅쿼리를 돌린다는 가정
     private void slowQuery(long seconds) {
         try {
             Thread.sleep(seconds);

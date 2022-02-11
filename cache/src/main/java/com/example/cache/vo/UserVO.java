@@ -11,15 +11,13 @@ import lombok.ToString;
 @Setter
 @ToString
 public class UserVO implements Serializable {
-	public UserVO(int idx, String email, String name) {
-		this.idx = idx;
+	public UserVO(String email, String name) {
 		this.email = email;
 		this.name = name;
 	}
 	public UserVO() {
 
 	}
-    private int idx;
 
     private String email;
 
